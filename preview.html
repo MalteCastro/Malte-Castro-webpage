@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Malte Castro – dansk model, artist og skuespiller. Se portfolio, film, musik og projekter.">
+  <meta name="theme-color" content="#101010">
+  <title>Malte Castro | Model · Artist · Actor</title>
+
+  <style>
+    :root {
+      --bg: #101010;
+      --panel: #191919;
+      --text: #f6f3ee;
+      --muted: #aaa49c;
+      --accent: #d8b78b;
+      --line: #33302d;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+    img, video { max-width: 100%; }
+
+    .wrap {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* HERO: Udskift billedstien med Maltes eget billede */
+
+    .hero {
+      min-height: 90svh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 28px;
+      background:
+        linear-gradient(90deg, rgba(10,10,10,.88), rgba(10,10,10,.12)),
+        linear-gradient(0deg, rgba(10,10,10,.75), transparent 70%),
+        url("images/malte-castro-hero.jpg") center 35% / cover no-repeat,
+        #24201b;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: #ddd6cc;
+    }
+
+    .brand { font-weight: 800; color: white; }
+
+    .hero-content {
+      padding-top: 100px;
+      padding-bottom: 90px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .24em;
+      font-size: .75rem;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 11vw, 9rem);
+      line-height: .86;
+      letter-spacing: -.075em;
+      margin: 22px 0;
+      font-weight: 800;
+    }
+
+    .hero-content p {
+      max-width: 540px;
+      color: #e0dbd4;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 12px 18px;
+      text-transform: uppercase;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      transition: .2s;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #171411;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    /* NAVIGATION */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(16,16,16,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .tab {
+      flex: 1;
+      min-width: max-content;
+      background: none;
+      color: var(--muted);
+      border: 0;
+      border-bottom: 2px solid transparent;
+      padding: 18px 20px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      font-size: .72rem;
+    }
+
+    .tab[aria-selected="true"],
+    .tab:hover {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+
+    main { min-height: 50vh; }
+
+    .panel {
+      display: none;
+      padding: 76px 0 95px;
+      scroll-margin-top: 65px;
+    }
+
+    .panel.active { display: block; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 390px;
+      margin: 0;
+      font-size: .92rem;
+    }
+
+    /* PORTFOLIO OG VIDEOER */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .tile {
+      min-width: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .tile.wide { grid-column: span 2; }
+
+    .tile img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: #24201b;
+    }
+
+    .tile.wide img { aspect-ratio: 16 / 9; }
+
+    .tile iframe,
+    .tile video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      background: #080808;
+    }
+
+    .tile-copy { padding: 15px 17px 18px; }
+
+    .tile-copy h3 {
+      font-size: 1rem;
+      margin: 0 0 3px;
+    }
+
+    .tile-copy p {
+      font-size: .85rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .tile-copy a {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--accent);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      text-decoration: none;
+    }
+
+    /* MUSIK */
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .album {
+      min-width: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 12px;
+    }
+
+    .album img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: #292521;
+    }
+
+    .album h3 { font-size: .95rem; margin: 12px 0 2px; }
+    .album p { color: var(--muted); font-size: .8rem; margin: 0 0 10px; }
+
+    .small-link {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: .7rem;
+      text-decoration: none;
+    }
+
+    /* BIOGRAFI */
+
+    .bio-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .bio-mark {
+      min-height: 400px;
+      display: flex;
+      align-items: end;
+      padding: 28px;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.65), transparent),
+        url("images/malte-castro-bio.jpg") center / cover no-repeat,
+        #302b25;
+      border: 1px solid var(--line);
+      color: var(--accent);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+
+    .bio-copy {
+      color: #d3cec7;
+      font-size: 1.02rem;
+    }
+
+    .bio-copy h3 { color: var(--text); font-size: 1.4rem; }
+
+    .bio-copy blockquote {
+      margin: 30px 0;
+      padding-left: 20px;
+      border-left: 2px solid var(--accent);
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    /* LINKS OG KONTAKT */
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .contact-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: clamp(24px, 5vw, 55px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .contact-card h3 {
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin: 0 0 10px;
+      letter-spacing: -.04em;
+    }
+
+    .contact-card p { color: var(--muted); margin: 0; }
+
+    .email {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--accent);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .note { color: var(--muted); font-size: .8rem; margin-top: 24px; }
+
+    @media (max-width: 760px) {
+      .hero { min-height: 78svh; }
+      .hero-content { padding: 75px 0; }
+      .section-head { align-items: start; flex-direction: column; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .bio-layout { grid-template-columns: 1fr; gap: 25px; }
+      .bio-mark { min-height: 280px; }
+      .tab { padding: 15px 14px; }
+    }
+
+    @media (max-width: 420px) {
+      .grid { grid-template-columns: 1fr; }
+      .tile.wide { grid-column: span 1; }
+      .topline { font-size: .62rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero" id="top">
+    <div class="wrap topline">
+      <div class="brand">MALTE CASTRO</div>
+      <div>Model · Artist · Skuespiller</div>
+    </div>
+
+    <div class="wrap hero-content">
+      <div class="eyebrow">Officiel portfolio</div>
+      <h1>MALTE<br>CASTRO<span style="color:var(--accent)">.</span></h1>
+      <p>Model, artist og skuespiller. Et udvalg af mit arbejde inden for musik, mode, film og visuel historiefortælling.</p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#portfolio"
+           onclick="openTab('portfolio')">Se portfolio</a>
+        <a class="button" href="https://open.spotify.com/artist/2lPlzhzb48iN2IMxmjMPZ8"
+           target="_blank" rel="noopener noreferrer">Lyt på Spotify ↗</a>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding-bottom:20px;color:#ddd6cc;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;">
+      København · Åben for udvalgte projekter
+    </div>
+  </header>
+
+  <nav aria-label="Hovednavigation">
+    <div class="wrap tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="portfolio" onclick="openTab('portfolio')">01 / Portfolio</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="video" onclick="openTab('video')">02 / Video</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="music" onclick="openTab('music')">03 / Musik</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="about" onclick="openTab('about')">04 / Om Malte</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="contact" onclick="openTab('contact')">05 / Kontakt</button>
+    </div>
+  </nav>
+
+  <main id="work">
+
+    <section class="panel active" id="portfolio" role="tabpanel">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Udvalgt<br>portfolio</h2>
+          <p>Mode, kampagner, portrætter og kreative samarbejder.</p>
+        </div>
+        <div class="grid" id="portfolio-grid"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="video" role="tabpanel">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Film &<br>video</h2>
+          <p>Showreels, skuespil, musikvideoer, kampagner og behind the scenes.</p>
+        </div>
+        <div class="grid" id="video-grid"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="music" role="tabpanel">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Musik &<br>udgivelser</h2>
+          <p>Singler, remixes og musikalske samarbejder.</p>
+        </div>
+
+        <p style="margin:0 0 26px">
+          <a class="button primary"
+             href="https://open.spotify.com/artist/2lPlzhzb48iN2IMxmjMPZ8"
+             target="_blank" rel="noopener noreferrer">
+            Lyt til Malte på Spotify ↗
+          </a>
+        </p>
+
+        <div class="album-grid" id="music-grid"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="about" role="tabpanel">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Om Malte<br>Castro</h2>
+          <p>Musikken, kameraet og historierne bag arbejdet.</p>
+        </div>
+
+        <div class="bio-layout">
+          <div class="bio-mark">Model.<br>Artist.<br>Actor.</div>
+
+          <div class="bio-copy">
+            <h3>Model · Artist · Skuespiller</h3>
+
+            <p>Malte Castro er 32 år og arbejder som artist, model og skuespiller. Som musiker har han udgivet seks singler samt en række remixes, herunder <em>Where Do We Go From Here</em>, som han har skrevet sammen med den Grammy-nominerede sangskriver Chelcee Grimes.</p>
+
+            <p>Musikken har altid været en stor passion for Malte, og han bruger gerne sine ledige stunder på at skrive, producere og udvikle nye musikalske projekter ved siden af familielivet med to børn og et tredje på vej.</p>
+
+            <p>Mange danskere lærte første gang Malte at kende gennem et stort dansk tv-program i 2013-2014, hvor han opbyggede en stor og loyal følgerskare. Den opbakning følger ham fortsat på sociale medier og gennem hans musikalske karriere.</p>
+
+            <p>Gennem de seneste 12 år har Malte arbejdet som model og medvirket i en lang række reklamekampagner og kommercielle produktioner. Nu er fokus i stigende grad rettet mod skuespil, hvor ambitionen er at lande flere roller i både film- og serieproduktioner.</p>
+
+            <blockquote>
+              "For mig handler det om at fortælle historier, hvad enten det er gennem musik, kameraet eller på det store lærred."
+              <br><br>– Malte Castro
+            </blockquote>
+
+            <div class="social-links">
+              <a class="button" href="https://open.spotify.com/artist/2lPlzhzb48iN2IMxmjMPZ8" target="_blank" rel="noopener noreferrer">Spotify ↗</a>
+              <a class="button" href="https://www.instagram.com/maltecastro/?hl=da" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+              <a class="button" href="https://www.facebook.com/MalteCastroArtist/?locale=da_DK" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="contact" role="tabpanel">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Lad os skabe<br>noget sammen</h2>
+          <p>Kontakt vedrørende modelarbejde, skuespil, musik, presse og kreative samarbejder.</p>
+        </div>
+
+        <div class="contact-card">
+          <div>
+            <h3>Har du et projekt i tankerne?</h3>
+            <p>Du er velkommen til at tage direkte kontakt.</p>
+          </div>
+          <a class="email" href="mailto:maltenc@hotmail.dk">maltenc@hotmail.dk ↗</a>
+        </div>
+
+        <div class="social-links" id="social-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <span>© <span id="year"></span> Malte Castro</span>
+      <span>Model · Artist · Skuespiller</span>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      SÅDAN TILFØJER DU INDHOLD
+
+      Kopiér et objekt i den relevante liste og indsæt det
+      som et nyt objekt med komma mellem hvert objekt.
+
+      Billeder: brug en sti som images/portfolio/billede.jpg
+      Videoer: brug en YouTube/Vimeo embed-adresse eller videofil.
+      Musik: brug coverbillede og link til udgivelsen.
+
+      Der er ingen fast grænse i koden for antal elementer.
+    */
+
+    const spotifyArtist =
+      "https://open.spotify.com/artist/2lPlzhzb48iN2IMxmjMPZ8";
+
+    // 1. PORTFOLIO
+    const portfolioItems = [
+      // Eksempel:
+      // {
+      //   title: "Modekampagne",
+      //   description: "Editorial · 2026",
+      //   image: "images/portfolio/kampagne.jpg",
+      //   link: "https://example.com",
+      //   wide: true
+      // },
+    ];
+
+    // 2. VIDEOER
+    const videoItems = [
+      // YouTube: https://www.youtube.com/embed/VIDEO_ID
+      // Vimeo: https://player.vimeo.com/video/VIDEO_ID
+      // Lokal fil: images/video/showreel.mp4
+      //
+      // {
+      //   title: "Showreel",
+      //   description: "Udvalgte skuespillerscener",
+      //   embed: "https://www.youtube.com/embed/VIDEO_ID",
+      //   link: ""
+      // },
+    ];
+
+    // 3. MUSIKUDGIVELSER
+    const musicItems = [
+      // {
+      //   title: "Where Do We Go From Here",
+      //   description: "Single · Årstal",
+      //   image: "images/music/release.jpg",
+      //   link: "LINK_TIL_UDGIVELSEN"
+      // },
+    ];
+
+    // 4. EKSTRA LINKS TIL KONTAKTSIDEN
+    const socialItems = [
+      {
+        title: "Instagram",
+        url: "https://www.instagram.com/maltecastro/?hl=da"
+      },
+      {
+        title: "Facebook",
+        url: "https://www.facebook.com/MalteCastroArtist/?locale=da_DK"
+      },
+      {
+        title: "Spotify",
+        url: spotifyArtist
+      }
+
+      // Tilføj eksempelvis YouTube, TikTok eller IMDb her.
+    ];
+
+    // Sikker opbygning af tekst og links.
+    // Indhold fra listerne indsættes som tekst, ikke som HTML.
+
+    function makeLink(url, label, className = "small-link") {
+      if (!url) return null;
+
+      const a = document.createElement("a");
+      a.className = className;
+      a.href = url;
+      a.textContent = label;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      return a;
+    }
+
+    function makeCopy(title, description, link) {
+      const copy = document.createElement("div");
+      copy.className = "tile-copy";
+
+      const h3 = document.createElement("h3");
+      h3.textContent = title || "Projekt";
+      copy.appendChild(h3);
+
+      if (description) {
+        const p = document.createElement("p");
+        p.textContent = description;
+        copy.appendChild(p);
+      }
+
+      const a = makeLink(link, "Se projekt ↗");
+      if (a) copy.appendChild(a);
+
+      return copy;
+    }
+
+    function renderPortfolio() {
+      const grid = document.getElementById("portfolio-grid");
+
+      portfolioItems.forEach(item => {
+        const tile = document.createElement("article");
+        tile.className = "tile" + (item.wide ? " wide" : "");
+
+        if (item.image) {
+          const img = document.createElement("img");
+          img.src = item.image;
+          img.alt = item.title || "Malte Castro portfolio";
+          img.loading = "lazy";
+          tile.appendChild(img);
+        }
+
+        tile.appendChild(makeCopy(
+          item.title, item.description, item.link
+        ));
+
+        grid.appendChild(tile);
+      });
+    }
+
+    function renderVideos() {
+      const grid = document.getElementById("video-grid");
+
+      videoItems.forEach(item => {
+        const tile = document.createElement("article");
+        tile.className = "tile" + (item.wide ? " wide" : "");
+
+        if (item.embed) {
+          const frame = document.createElement("iframe");
+          frame.src = item.embed;
+          frame.title = item.title || "Video med Malte Castro";
+          frame.loading = "lazy";
+          frame.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          frame.allowFullscreen = true;
+          tile.appendChild(frame);
+        } else if (item.video) {
+          const video = document.createElement("video");
+          video.src = item.video;
+          video.controls = true;
+          video.preload = "metadata";
+          tile.appendChild(video);
+        }
+
+        tile.appendChild(makeCopy(
+          item.title, item.description, item.link
+        ));
+
+        grid.appendChild(tile);
+      });
+    }
+
+    function renderMusic() {
+      const grid = document.getElementById("music-grid");
+
+      musicItems.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "album";
+
+        if (item.image) {
+          const img = document.createElement("img");
+          img.src = item.image;
+          img.alt = "Cover: " + (item.title || "Musikudgivelse");
+          img.loading = "lazy";
+          card.appendChild(img);
+        }
+
+        const h3 = document.createElement("h3");
+        h3.textContent = item.title || "Musikudgivelse";
+        card.appendChild(h3);
+
+        if (item.description) {
+          const p = document.createElement("p");
+          p.textContent = item.description;
+          card.appendChild(p);
+        }
+
+        const a = makeLink(
+          item.link || spotifyArtist,
+          "Lyt her ↗"
+        );
+
+        if (a) card.appendChild(a);
+        grid.appendChild(card);
+      });
+    }
+
+    function renderSocial() {
+      const grid = document.getElementById("social-grid");
+
+      socialItems.forEach(item => {
+        const a = makeLink(item.url, item.title, "button");
+        if (a) grid.appendChild(a);
+      });
+    }
+
+    function openTab(id) {
+      const panel = document.getElementById(id);
+      if (!panel) return;
+
+      document.querySelectorAll(".panel").forEach(p => {
+        const active = p.id === id;
+        p.classList.toggle("active", active);
+        p.hidden = !active;
+      });
+
+      document.querySelectorAll(".tab").forEach(tab => {
+        const active = tab.getAttribute("aria-controls") === id;
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+
+      if (location.hash !== "#" + id) {
+        history.replaceState(null, "", "#" + id);
+      }
+    }
+
+    // Start hjemmesiden
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    renderPortfolio();
+    renderVideos();
+    renderMusic();
+    renderSocial();
+
+    const validTabs = [
+      "portfolio", "video", "music", "about", "contact"
+    ];
+
+    document.querySelectorAll(".panel").forEach(panel => {
+      panel.hidden = !panel.classList.contains("active");
+    });
+
+    const initialTab = location.hash.slice(1);
+    if (validTabs.includes(initialTab)) {
+      openTab(initialTab);
+    }
+  </script>
+
+</body>
+</html>
